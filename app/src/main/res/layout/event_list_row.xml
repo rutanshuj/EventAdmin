@@ -3,148 +3,170 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="3dp"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:weightSum="1">
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardUseCompatPadding="true"
+        android:layout_gravity="center"
+        android:layout_weight="4.38"
         card_view:cardCornerRadius="4dp"
-        android:layout_weight="4.38">
+        card_view:cardUseCompatPadding="true">
 
         <ImageView
+            android:id="@+id/request_image"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:id="@+id/request_image"
-            android:scaleType="fitXY"
-            android:src="@drawable/abc_btn_check_material"
             android:adjustViewBounds="true"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/abc_btn_check_material" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Price will come here"
             android:id="@+id/request_price"
-            android:layout_marginTop="330dp"
-            android:paddingBottom="5dp"
-            android:gravity="right"
-            android:layout_gravity="right"
-            android:paddingLeft="5dp"/>
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="330dp"
+            android:gravity="right"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:text="Price will come here" />
+
+        <TextView
             android:id="@+id/request_location"
-            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="305dp"
             android:gravity="right"
             android:paddingRight="10dp"
-            android:layout_marginTop="305dp"
-            android:layout_gravity="right"
             android:text="Location will come here"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/request_category"
-            android:textStyle="bold"
             android:textSize="15dp"
-            android:padding="5dp"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginTop="300dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/request_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Category will come here"/>
+            android:layout_marginTop="300dp"
+            android:padding="5dp"
+            android:text="Category will come here"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/start_time"
             android:layout_marginTop="350dp"
-            android:text="From Date"
-            android:layout_above="@+id/start_time"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/start_time"
-            android:text="From Time"
-            android:layout_marginTop="370dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/request_club"
-            android:text="Club here"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="320dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To Date"
-            android:id="@+id/end_date"
-            android:layout_marginTop="350dp"
-            android:layout_marginLeft="100dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To Time"
-            android:id="@+id/end_time"
-            android:layout_marginTop="370dp"
-            android:layout_marginLeft="100dp"/>
+            android:text="From Date" />
 
         <TextView
+            android:id="@+id/start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="370dp"
+            android:text="From Time" />
+
+        <TextView
+            android:id="@+id/request_club"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="320dp"
+            android:text="Club here" />
+
+        <TextView
+            android:id="@+id/end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="350dp"
+            android:text="To Date" />
+
+        <TextView
+            android:id="@+id/end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="370dp"
+            android:text="To Time" />
+
+        <TextView
+            android:id="@+id/request_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/request_desc"
-            android:textColor="#000000"
+            android:layout_marginTop="420dp"
             android:text="Desc here"
-            android:layout_marginTop="420dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="contact number"
-            android:id="@+id/request_contact"
-            android:layout_marginTop="350dp"
-            android:gravity="right"
-            android:layout_gravity="right"/>
+            android:textColor="#000000" />
 
         <TextView
+            android:id="@+id/request_contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="weblink "
-            android:padding="3dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="350dp"
+            android:gravity="right"
+            android:text="contact number" />
+
+        <TextView
             android:id="@+id/request_weblink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:layout_marginTop="390dp"
             android:gravity="right"
-            android:layout_gravity="right"/>
+            android:padding="3dp"
+            android:text="weblink " />
 
         <TextView
-            android:padding="3dp"
+            android:id="@+id/request_fblink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="fbLink"
-            android:id="@+id/request_fblink"
+            android:layout_gravity="right"
             android:layout_marginTop="370dp"
             android:gravity="right"
-            android:layout_gravity="right" />
+            android:padding="3dp"
+            android:text="fbLink" />
 
         <TextView
+            android:id="@+id/request_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/request_title"
             android:layout_marginTop="260dp"
             android:text="Title will come here "
-            android:textStyle="bold"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/event_user_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="1dp"
+            android:layout_marginTop="390dp"
+            android:src="@drawable/error" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UserName"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="40dp"/>
 
         <Button
+            android:id="@+id/approve_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/approve_button"
-            android:text="Yeah it's cool !"
-            android:layout_marginTop="450dp"/>
+            android:layout_marginTop="450dp"
+            android:text="Yeah it's cool !" />
     </android.support.v7.widget.CardView>
 
 

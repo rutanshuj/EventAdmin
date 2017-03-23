@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView r_event_list;
@@ -86,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setContact(model.getContact());
                 viewHolder.setImageUrl(getApplicationContext(), model.getImageUrl());
 
+                viewHolder.setEvent_user_image(getApplicationContext(), model.getEvent_user_image());
+                viewHolder.setEvent_username(model.getEvent_username());
+
+
                 swipeRefreshLayout.setRefreshing(false);
 
                 final String desc = model.getDesc();
@@ -102,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 final String fblink = model.getFblink();
                 final String weblink = model.getWeblink();
                 final String contact = model.getContact();
+                final String event_user_image = model.getEvent_user_image();
+                final String evennt_usrename = model.getEvent_username();
 
 
                 final DatabaseReference aRef = FirebaseDatabase.getInstance().getReference();
@@ -114,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         String key = aRef.child("Approved Events").push().getKey();
                         Event event = new Event(title, desc, location, category, price,
                                 imageurl, start_date, end_date, start_time, end_time,
-                                fblink, weblink, contact, club);
+                                fblink, weblink, contact, club, evennt_usrename, event_user_image);
 
                         Map<String, Object> eventValues = event.toMap();
 
@@ -208,6 +216,15 @@ public class MainActivity extends AppCompatActivity {
         public void setContact(String contact){
             TextView request_contact = (TextView) mView.findViewById(R.id.request_contact);
             request_contact.setText(contact);
+        }
+        public void setEvent_username(String event_username) {
+            TextView a_event_username = (TextView) mView.findViewById(R.id.userName);
+            a_event_username.setText(event_username);
+        }
+
+        public void setEvent_user_image(Context ctx, String event_user_image) {
+            CircleImageView a_event_user_image = (CircleImageView) mView.findViewById(R.id.event_user_image);
+            Picasso.with(ctx).load(event_user_image).into(a_event_user_image);
         }
     }
 }
