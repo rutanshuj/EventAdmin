@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 final String weblink = model.getWeblink();
                 final String contact = model.getContact();
                 final String event_user_image = model.getEvent_user_image();
-                final String evennt_usrename = model.getEvent_username();
+                final String event_username = model.getEvent_username();
 
 //                SharedPreferences sharedPreferences = getSharedPreferences("desc", MODE_PRIVATE);
 //                SharedPreferences.Editor sp = sharedPreferences.edit();
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                         String key = aRef.child("Approved Events").push().getKey();
                         Event event = new Event(title, desc, location, category, price,
                                 imageurl, start_date, end_date, start_time, end_time,
-                                fblink, weblink, contact, club, evennt_usrename, event_user_image);
+                                fblink, weblink, contact, club, event_username, event_user_image);
 
                         Map<String, Object> eventValues = event.toMap();
 
