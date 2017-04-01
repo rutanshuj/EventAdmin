@@ -1,16 +1,21 @@
 package com.example.admin.eventadmin;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -42,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Event");
 
+//        TextView request_desc = (TextView) findViewById(R.id.request_desc);
+//        request_desc.setScroller(new Scroller(this));
+//        request_desc.setMaxLines(4);
+//        request_desc.setVerticalScrollBarEnabled(true);
+//        request_desc.setMovementMethod(new ScrollingMovementMethod());
+
+
         r_event_list = (RecyclerView) findViewById(R.id.request_EventList);
         r_event_list.setHasFixedSize(true);
         r_event_list.setLayoutManager(new LinearLayoutManager(this));
 
         progressDialog = new ProgressDialog(this);
+
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -74,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             protected void populateViewHolder(RequestViewHolder viewHolder, Event model, int position) {
 
                 viewHolder.setTitle(model.getTitle());
-                viewHolder.setDesc(model.getDesc());
+                //viewHolder.setDesc(model.getDesc());
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setLocation(model.getLocation());
                 viewHolder.setPrice(model.getPrice());
@@ -111,6 +124,10 @@ public class MainActivity extends AppCompatActivity {
                 final String event_user_image = model.getEvent_user_image();
                 final String evennt_usrename = model.getEvent_username();
 
+//                SharedPreferences sharedPreferences = getSharedPreferences("desc", MODE_PRIVATE);
+//                SharedPreferences.Editor sp = sharedPreferences.edit();
+//                sp.putString("description", desc);
+//                sp.commit();
 
                 final DatabaseReference aRef = FirebaseDatabase.getInstance().getReference();
 
@@ -134,21 +151,53 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 });
+
+
+                viewHolder.delete_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        progressDialog.setMessage("Deleting Event");
+                        progressDialog.show();
+                        progressDialog.dismiss();
+                    }
+                });
+                viewHolder.image_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                        alert.setTitle("Description");
+                        alert.setMessage(desc);
+
+                        final TextView textView = new TextView(MainActivity.this);
+                        alert.setView(textView);
+
+                        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        alert.show();
+                    }
+                });
             }
         };
         r_event_list.setAdapter(firebaseRecyclerAdapter);
+
     }
 
     public static class RequestViewHolder extends RecyclerView.ViewHolder {
         View mView;
-        public Button verify_button;
-
+        private Button verify_button;
+        private Button delete_button;
+        private ImageView image_button;
 
         public RequestViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
             verify_button = (Button) mView.findViewById(R.id.approve_button);
-
+            delete_button = (Button) mView.findViewById(R.id.remove_Button);
+            image_button = (ImageView) mView.findViewById(R.id.request_image);
         }
 
         public void setTitle(String title) {
@@ -156,10 +205,10 @@ public class MainActivity extends AppCompatActivity {
             request_title.setText(title);
         }
 
-        public void setDesc(String desc) {
-            TextView request_desc = (TextView) mView.findViewById(R.id.request_desc);
-            request_desc.setText(desc);
-        }
+//        public void setDesc(String desc) {
+//            TextView request_desc = (TextView) mView.findViewById(R.id.request_desc);
+//            request_desc.setText(desc);
+//        }
 
         public void setLocation(String location) {
             TextView request_desc = (TextView) mView.findViewById(R.id.request_location);

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/tools">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -17,6 +22,7 @@
         card_view:cardUseCompatPadding="true">
 
         <ImageView
+            app:contextClickable="true"
             android:id="@+id/request_image"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -98,15 +104,6 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="370dp"
             android:text="To Time" />
-
-        <TextView
-            android:id="@+id/request_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="420dp"
-            android:text="Desc here"
-            android:textColor="#000000" />
-
         <TextView
             android:id="@+id/request_contact"
             android:layout_width="wrap_content"
@@ -149,25 +146,31 @@
             android:id="@+id/event_user_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:padding="1dp"
             android:layout_marginTop="390dp"
+            android:padding="1dp"
             android:src="@drawable/error" />
 
         <TextView
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UserName"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="400dp"
-            android:layout_marginLeft="40dp"/>
+            android:text="UserName" />
+
+        <Button
+            android:id="@+id/remove_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="480dp"
+            android:text="Event is a Sucks !" />
 
         <Button
             android:id="@+id/approve_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="450dp"
+            android:layout_marginTop="430dp"
             android:text="Yeah it's cool !" />
     </android.support.v7.widget.CardView>
-
-
 </LinearLayout>
+</ScrollView>
