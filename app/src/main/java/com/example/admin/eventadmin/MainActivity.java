@@ -4,38 +4,27 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Scroller;
 import android.widget.TextView;
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView r_event_list;
     private DatabaseReference mDatabaseRef;
-
     private ProgressDialog progressDialog;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -46,15 +35,11 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Event");
-
         r_event_list = (RecyclerView) findViewById(R.id.request_EventList);
         r_event_list.setHasFixedSize(true);
         r_event_list.setLayoutManager(new LinearLayoutManager(this));
-
         progressDialog = new ProgressDialog(this);
-
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -68,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
 
         FirebaseRecyclerAdapter<Event, RequestViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Event, RequestViewHolder>(
                 Event.class,
@@ -96,9 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setEvent_user_image(getApplicationContext(), model.getEvent_user_image());
                 viewHolder.setEvent_username(model.getEvent_username());
 
-
                 swipeRefreshLayout.setRefreshing(false);
-
                 final String desc = model.getDesc();
                 final String imageurl = model.getImageUrl();
                 final String start_date = model.getStart_date();
@@ -138,8 +120,6 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 });
-
-
                 viewHolder.delete_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -170,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         r_event_list.setAdapter(firebaseRecyclerAdapter);
-
     }
 
     public static class RequestViewHolder extends RecyclerView.ViewHolder {

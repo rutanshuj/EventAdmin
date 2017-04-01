@@ -1,23 +1,13 @@
 package com.example.admin.eventadmin;
 
 import com.google.firebase.database.Exclude;
-
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by RutanshuJhaveri on 2/1/2017.
- */
-
 public class Event  {
-
-
     private String title, desc, location, category, price, imageUrl;
-
     private String start_date, end_date, start_time, end_time, fblink, weblink, contact, club;
-
     private String event_username, event_user_image;
-
 
     public Event(String title, String desc, String location, String category, String price,
                  String imageUrl, String start_date, String end_date, String start_time,
