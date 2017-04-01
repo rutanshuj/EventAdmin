@@ -47,13 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Event");
 
-//        TextView request_desc = (TextView) findViewById(R.id.request_desc);
-//        request_desc.setScroller(new Scroller(this));
-//        request_desc.setMaxLines(4);
-//        request_desc.setVerticalScrollBarEnabled(true);
-//        request_desc.setMovementMethod(new ScrollingMovementMethod());
-
-
         r_event_list = (RecyclerView) findViewById(R.id.request_EventList);
         r_event_list.setHasFixedSize(true);
         r_event_list.setLayoutManager(new LinearLayoutManager(this));
@@ -87,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
             protected void populateViewHolder(RequestViewHolder viewHolder, Event model, int position) {
 
                 viewHolder.setTitle(model.getTitle());
-                //viewHolder.setDesc(model.getDesc());
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setLocation(model.getLocation());
                 viewHolder.setPrice(model.getPrice());
@@ -123,11 +115,6 @@ public class MainActivity extends AppCompatActivity {
                 final String contact = model.getContact();
                 final String event_user_image = model.getEvent_user_image();
                 final String event_username = model.getEvent_username();
-
-//                SharedPreferences sharedPreferences = getSharedPreferences("desc", MODE_PRIVATE);
-//                SharedPreferences.Editor sp = sharedPreferences.edit();
-//                sp.putString("description", desc);
-//                sp.commit();
 
                 final DatabaseReference aRef = FirebaseDatabase.getInstance().getReference();
 
@@ -204,11 +191,6 @@ public class MainActivity extends AppCompatActivity {
             TextView request_title = (TextView) mView.findViewById(R.id.request_title);
             request_title.setText(title);
         }
-
-//        public void setDesc(String desc) {
-//            TextView request_desc = (TextView) mView.findViewById(R.id.request_desc);
-//            request_desc.setText(desc);
-//        }
 
         public void setLocation(String location) {
             TextView request_desc = (TextView) mView.findViewById(R.id.request_location);
